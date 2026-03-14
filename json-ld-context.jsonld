@@ -1,0 +1,219 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "odata": "http://docs.oasis-open.org/odata/ns/",
+    "edm": "http://docs.oasis-open.org/odata/ns/edm#",
+    "schema": "https://schema.org/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "hydra": "http://www.w3.org/ns/hydra/core#",
+    "dcat": "http://www.w3.org/ns/dcat#",
+
+    "ODataService": {
+      "@id": "odata:Service",
+      "@type": "@id"
+    },
+    "EntitySet": {
+      "@id": "odata:EntitySet",
+      "@type": "@id"
+    },
+    "EntityType": {
+      "@id": "edm:EntityType",
+      "@type": "@id"
+    },
+    "ComplexType": {
+      "@id": "edm:ComplexType",
+      "@type": "@id"
+    },
+    "NavigationProperty": {
+      "@id": "edm:NavigationProperty",
+      "@type": "@id"
+    },
+    "Property": {
+      "@id": "edm:Property"
+    },
+    "Action": {
+      "@id": "edm:Action",
+      "@type": "@id"
+    },
+    "Function": {
+      "@id": "edm:Function",
+      "@type": "@id"
+    },
+    "Singleton": {
+      "@id": "odata:Singleton",
+      "@type": "@id"
+    },
+
+    "serviceDocument": {
+      "@id": "odata:ServiceDocument",
+      "@type": "@id"
+    },
+    "metadataDocument": {
+      "@id": "odata:MetadataDocument",
+      "@type": "@id"
+    },
+
+    "entityCollection": {
+      "@id": "hydra:Collection",
+      "@type": "@id"
+    },
+    "members": {
+      "@id": "hydra:member",
+      "@container": "@list"
+    },
+    "totalItems": {
+      "@id": "hydra:totalItems",
+      "@type": "xsd:integer"
+    },
+    "nextPage": {
+      "@id": "hydra:next",
+      "@type": "@id"
+    },
+
+    "name": {
+      "@id": "schema:name"
+    },
+    "description": {
+      "@id": "schema:description"
+    },
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "identifier": {
+      "@id": "schema:identifier"
+    },
+    "dateCreated": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "dateModified": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+
+    "etag": {
+      "@id": "odata:etag"
+    },
+    "editLink": {
+      "@id": "odata:editLink",
+      "@type": "@id"
+    },
+    "readLink": {
+      "@id": "odata:readLink",
+      "@type": "@id"
+    },
+    "deltaLink": {
+      "@id": "odata:deltaLink",
+      "@type": "@id"
+    },
+    "nextLink": {
+      "@id": "odata:nextLink",
+      "@type": "@id"
+    },
+    "mediaReadLink": {
+      "@id": "odata:mediaReadLink",
+      "@type": "@id"
+    },
+    "mediaEditLink": {
+      "@id": "odata:mediaEditLink",
+      "@type": "@id"
+    },
+    "mediaContentType": {
+      "@id": "odata:mediaContentType"
+    },
+    "context": {
+      "@id": "odata:context",
+      "@type": "@id"
+    },
+    "count": {
+      "@id": "odata:count",
+      "@type": "xsd:integer"
+    },
+
+    "errorResponse": {
+      "@id": "odata:Error"
+    },
+    "errorCode": {
+      "@id": "odata:errorCode"
+    },
+    "errorMessage": {
+      "@id": "odata:errorMessage"
+    },
+    "errorTarget": {
+      "@id": "odata:errorTarget"
+    },
+    "errorDetails": {
+      "@id": "odata:errorDetails",
+      "@container": "@list"
+    },
+    "innerError": {
+      "@id": "odata:innerError"
+    },
+
+    "deletedEntity": {
+      "@id": "odata:DeletedEntity"
+    },
+    "deletedLink": {
+      "@id": "odata:DeletedLink"
+    },
+    "addedLink": {
+      "@id": "odata:AddedLink"
+    },
+    "deltaReason": {
+      "@id": "odata:deltaReason"
+    },
+
+    "filter": {
+      "@id": "odata:filter"
+    },
+    "select": {
+      "@id": "odata:select"
+    },
+    "expand": {
+      "@id": "odata:expand"
+    },
+    "orderby": {
+      "@id": "odata:orderby"
+    },
+    "top": {
+      "@id": "odata:top",
+      "@type": "xsd:integer"
+    },
+    "skip": {
+      "@id": "odata:skip",
+      "@type": "xsd:integer"
+    },
+    "search": {
+      "@id": "odata:search"
+    },
+
+    "batch": {
+      "@id": "odata:Batch",
+      "@type": "@id"
+    },
+
+    "EdmBinary": "edm:Binary",
+    "EdmBoolean": "edm:Boolean",
+    "EdmByte": "edm:Byte",
+    "EdmDate": "edm:Date",
+    "EdmDateTimeOffset": "edm:DateTimeOffset",
+    "EdmDecimal": "edm:Decimal",
+    "EdmDouble": "edm:Double",
+    "EdmDuration": "edm:Duration",
+    "EdmGuid": "edm:Guid",
+    "EdmInt16": "edm:Int16",
+    "EdmInt32": "edm:Int32",
+    "EdmInt64": "edm:Int64",
+    "EdmSByte": "edm:SByte",
+    "EdmSingle": "edm:Single",
+    "EdmString": "edm:String",
+    "EdmTimeOfDay": "edm:TimeOfDay",
+    "EdmGeography": "edm:Geography",
+    "EdmGeometry": "edm:Geometry",
+    "EdmStream": "edm:Stream"
+  }
+}

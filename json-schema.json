@@ -1,0 +1,311 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.odata.org/v4.01/odata-response-formats.json",
+  "title": "OData Response Formats",
+  "description": "JSON Schema definitions for OData v4.01 response formats including entity collections, individual entities, error responses, delta responses, and service documents.",
+  "$defs": {
+    "ServiceDocument": {
+      "type": "object",
+      "title": "OData Service Document",
+      "description": "The service document lists all top-level resources (entity sets, singletons, function imports) available from an OData service.",
+      "required": ["@odata.context", "value"],
+      "properties": {
+        "@odata.context": {
+          "type": "string",
+          "description": "Context URL referencing the metadata document",
+          "format": "uri-reference"
+        },
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ServiceDocumentItem"
+          }
+        }
+      }
+    },
+    "ServiceDocumentItem": {
+      "type": "object",
+      "title": "Service Document Item",
+      "required": ["name", "url"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the top-level resource"
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["EntitySet", "Singleton", "FunctionImport", "ServiceDocument"],
+          "description": "The kind of resource"
+        },
+        "url": {
+          "type": "string",
+          "description": "Relative URL to the resource"
+        },
+        "title": {
+          "type": "string",
+          "description": "Human-readable title for the resource"
+        }
+      }
+    },
+    "EntityCollection": {
+      "type": "object",
+      "title": "OData Entity Collection",
+      "description": "A collection of entities returned from an entity set query. Supports server-driven paging via nextLink and change tracking via deltaLink.",
+      "required": ["value"],
+      "properties": {
+        "@odata.context": {
+          "type": "string",
+          "description": "Context URL describing the collection type",
+          "format": "uri-reference"
+        },
+        "@odata.count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total count of entities matching the query (returned when $count=true)"
+        },
+        "@odata.nextLink": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to retrieve the next page of results in server-driven paging"
+        },
+        "@odata.deltaLink": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to retrieve changes since this response was generated"
+        },
+        "value": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Entity"
+          }
+        }
+      }
+    },
+    "Entity": {
+      "type": "object",
+      "title": "OData Entity",
+      "description": "An individual entity instance with OData control information annotations and dynamic properties.",
+      "properties": {
+        "@odata.context": {
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "@odata.type": {
+          "type": "string",
+          "description": "Fully qualified type name prefixed with #",
+          "pattern": "^#"
+        },
+        "@odata.id": {
+          "type": "string",
+          "description": "Entity ID, typically a canonical URL"
+        },
+        "@odata.etag": {
+          "type": "string",
+          "description": "ETag for optimistic concurrency control"
+        },
+        "@odata.editLink": {
+          "type": "string",
+          "description": "URL for modifying the entity"
+        },
+        "@odata.readLink": {
+          "type": "string",
+          "description": "URL for reading the entity"
+        },
+        "@odata.mediaReadLink": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to read the media content of a media entity"
+        },
+        "@odata.mediaEditLink": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to update the media content of a media entity"
+        },
+        "@odata.mediaContentType": {
+          "type": "string",
+          "description": "MIME type of the media content"
+        }
+      },
+      "additionalProperties": true
+    },
+    "ODataError": {
+      "type": "object",
+      "title": "OData Error Response",
+      "description": "Standard OData error response format per the OData JSON Format specification.",
+      "required": ["error"],
+      "properties": {
+        "error": {
+          "$ref": "#/$defs/ErrorObject"
+        }
+      }
+    },
+    "ErrorObject": {
+      "type": "object",
+      "title": "Error Object",
+      "required": ["code", "message"],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "Service-defined error code (not the HTTP status code)"
+        },
+        "message": {
+          "type": "string",
+          "description": "Human-readable, language-dependent error message"
+        },
+        "target": {
+          "type": "string",
+          "description": "The target of the error, such as the name of the property in error"
+        },
+        "details": {
+          "type": "array",
+          "description": "Array of additional error detail objects",
+          "items": {
+            "$ref": "#/$defs/ErrorDetail"
+          }
+        },
+        "innererror": {
+          "type": "object",
+          "description": "Implementation-specific debug information to help determine the cause of the error",
+          "additionalProperties": true
+        }
+      }
+    },
+    "ErrorDetail": {
+      "type": "object",
+      "title": "Error Detail",
+      "required": ["code", "message"],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        }
+      }
+    },
+    "DeltaResponse": {
+      "type": "object",
+      "title": "OData Delta Response",
+      "description": "A delta response contains changes (created, updated, deleted entities and added/removed links) since a previous query.",
+      "required": ["value"],
+      "properties": {
+        "@odata.context": {
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "@odata.count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "@odata.nextLink": {
+          "type": "string",
+          "format": "uri"
+        },
+        "@odata.deltaLink": {
+          "type": "string",
+          "format": "uri"
+        },
+        "value": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "$ref": "#/$defs/Entity" },
+              { "$ref": "#/$defs/DeletedEntity" },
+              { "$ref": "#/$defs/AddedLink" },
+              { "$ref": "#/$defs/DeletedLink" }
+            ]
+          }
+        }
+      }
+    },
+    "DeletedEntity": {
+      "type": "object",
+      "title": "Deleted Entity",
+      "description": "Represents an entity that has been deleted or has fallen out of scope.",
+      "required": ["@odata.id", "reason"],
+      "properties": {
+        "@odata.context": {
+          "type": "string"
+        },
+        "@odata.id": {
+          "type": "string",
+          "description": "Entity ID of the deleted entity"
+        },
+        "reason": {
+          "type": "string",
+          "enum": ["changed", "deleted"],
+          "description": "Reason the entity is no longer in the result set"
+        }
+      }
+    },
+    "AddedLink": {
+      "type": "object",
+      "title": "Added Link",
+      "description": "Represents a new relationship between two entities.",
+      "required": ["source", "relationship", "target"],
+      "properties": {
+        "source": {
+          "type": "string",
+          "description": "Entity ID of the source entity"
+        },
+        "relationship": {
+          "type": "string",
+          "description": "Name of the navigation property"
+        },
+        "target": {
+          "type": "string",
+          "description": "Entity ID of the target entity"
+        }
+      }
+    },
+    "DeletedLink": {
+      "type": "object",
+      "title": "Deleted Link",
+      "description": "Represents a removed relationship between two entities.",
+      "required": ["source", "relationship", "target"],
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "relationship": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        }
+      }
+    },
+    "PrimitiveValue": {
+      "type": "object",
+      "title": "Primitive Value Response",
+      "description": "Response containing a single primitive value.",
+      "required": ["value"],
+      "properties": {
+        "@odata.context": {
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "value": {
+          "description": "The primitive value"
+        }
+      }
+    },
+    "EntityReference": {
+      "type": "object",
+      "title": "Entity Reference",
+      "description": "A reference to an entity (used in $ref responses).",
+      "required": ["@odata.id"],
+      "properties": {
+        "@odata.context": {
+          "type": "string"
+        },
+        "@odata.id": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
