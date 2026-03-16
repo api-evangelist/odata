@@ -1,53 +1,48 @@
+aid: odata
 name: OData
 description: >-
   OData (Open Data Protocol) is an OASIS standard that defines best practices
   for building and consuming RESTful APIs. It enables the creation of
   query-based data services over HTTP, providing a uniform way to describe
   data and data models, query and edit data, and perform batch operations.
-  OData uses standard HTTP conventions and JSON or XML payload formats.
-image: https://www.odata.org/assets/OData-logo.png
-url: https://www.odata.org/
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-- OData
-- Open Data Protocol
-- RESTful APIs
-- Query Language
-- OASIS Standard
-created: '2025'
-modified: '2025'
-specificationVersion: '0.16'
-apis:
-- name: OData Service API
-  description: >-
-    Standard OData service endpoints including service document, metadata
-    document, entity set CRUD operations, and batch processing as defined
-    by the OData v4.01 specification.
-  image: https://www.odata.org/assets/OData-logo.png
-  humanURL: https://www.odata.org/documentation/
-  baseURL: https://services.odata.org/V4/TripPinService
-  version: '4.01'
-  tags:
   - OData
-  - Service Document
-  - Metadata
-  - Entity Sets
-  - Batch
-  properties:
-  - type: x-openapi
-    url: openapi.yml
-  - type: x-json-schema
-    url: json-schema.json
-  - type: x-json-ld-context
-    url: json-ld-context.jsonld
-  - type: x-documentation
-    url: https://www.odata.org/documentation/
-  - type: x-specification
-    url: https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html
-  - type: x-getting-started
-    url: https://www.odata.org/getting-started/
-  contact:
-  - type: x-website
+  - Open Data Protocol
+  - RESTful APIs
+  - Query Language
+  - OASIS Standard
+url: https://raw.githubusercontent.com/api-evangelist/odata/refs/heads/main/apis.yml
+created: '2025-01-01'
+modified: '2026-03-16'
+specificationVersion: '0.19'
+apis:
+  - aid: odata:odata-service
+    name: OData Service API
+    description: >-
+      Standard OData service endpoints including service document, metadata
+      document, entity set CRUD operations, and batch processing as defined
+      by the OData v4.01 specification.
+    humanURL: https://www.odata.org/documentation/
+    tags:
+      - OData
+      - Service Document
+      - Metadata
+    properties:
+      - type: Documentation
+        url: https://www.odata.org/documentation/
+      - type: Getting Started
+        url: https://www.odata.org/getting-started/
+common:
+  - type: Website
     url: https://www.odata.org/
-  - type: x-github
+  - type: Documentation
+    url: https://www.odata.org/documentation/
+  - type: GitHub Organization
     url: https://github.com/OData
-common: []
+  - type: Reference
+    url: https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
