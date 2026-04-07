@@ -80,6 +80,8 @@ paths:
                 description: CSDL JSON metadata document
         '500':
           $ref: '#/components/responses/InternalServerError'
+      tags:
+        - $Metadata
   /{entitySet}:
     get:
       operationId: getEntityCollection
@@ -305,6 +307,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '500':
           $ref: '#/components/responses/InternalServerError'
+      tags:
+        - $Batch
 components:
   parameters:
     ODataVersion:
@@ -649,3 +653,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ODataError'
+tags:
+  - name: $Batch
+  - name: $Metadata

@@ -8,11 +8,11 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
+  - OASIS Standard
   - OData
   - Open Data Protocol
-  - RESTful APIs
   - Query Language
-  - OASIS Standard
+  - RESTful APIs
 url: https://raw.githubusercontent.com/api-evangelist/odata/refs/heads/main/apis.yml
 created: '2025-01-01'
 modified: '2026-03-16'
@@ -26,9 +26,9 @@ apis:
       by the OData v4.01 specification.
     humanURL: https://www.odata.org/documentation/
     tags:
+      - Metadata
       - OData
       - Service Document
-      - Metadata
     properties:
       - type: Documentation
         url: https://www.odata.org/documentation/
