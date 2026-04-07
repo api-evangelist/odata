@@ -30,7 +30,7 @@ paths:
   /:
     get:
       operationId: getServiceDocument
-      summary: Get Service Document
+      summary: OData Get Service Document
       description: >-
         Returns the OData service document, which lists all available entity
         sets, singletons, and function imports exposed by the service.
@@ -51,7 +51,7 @@ paths:
   /$metadata:
     get:
       operationId: getMetadataDocument
-      summary: Get Metadata Document
+      summary: OData Get Metadata Document
       description: >-
         Returns the OData metadata document (CSDL) describing the entity
         data model exposed by the service, including entity types, complex
@@ -83,7 +83,7 @@ paths:
   /{entitySet}:
     get:
       operationId: getEntityCollection
-      summary: Query Entity Collection
+      summary: OData Query Entity Collection
       description: >-
         Retrieves a collection of entities from the specified entity set.
         Supports OData system query options for filtering, sorting,
@@ -123,7 +123,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
     post:
       operationId: createEntity
-      summary: Create Entity
+      summary: OData Create Entity
       description: Creates a new entity in the specified entity set.
       parameters:
         - name: entitySet
@@ -162,7 +162,7 @@ paths:
   /{entitySet}({key}):
     get:
       operationId: getEntity
-      summary: Get Entity by Key
+      summary: OData Get Entity by Key
       description: Retrieves a single entity by its key value.
       parameters:
         - name: entitySet
@@ -195,7 +195,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
     patch:
       operationId: updateEntity
-      summary: Update Entity
+      summary: OData Update Entity
       description: Updates an existing entity using PATCH (merge semantics).
       parameters:
         - name: entitySet
@@ -243,7 +243,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
     delete:
       operationId: deleteEntity
-      summary: Delete Entity
+      summary: OData Delete Entity
       description: Deletes an entity from the specified entity set.
       parameters:
         - name: entitySet
@@ -278,7 +278,7 @@ paths:
   /$batch:
     post:
       operationId: executeBatch
-      summary: Execute Batch Request
+      summary: OData Execute Batch Request
       description: >-
         Executes a batch of OData requests in a single HTTP call.
         Supports both JSON batch format and multipart/mixed format.
