@@ -15,7 +15,7 @@ tags:
   - RESTful APIs
 url: https://raw.githubusercontent.com/api-evangelist/odata/refs/heads/main/apis.yml
 created: '2025-01-01'
-modified: '2026-04-28'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
   - aid: odata:odata-service
@@ -45,6 +45,9 @@ common:
     url: https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html
   - type: Integrations
     url: https://www.odata.org/ecosystem/
+  - name: MCP Server
+    url: https://github.com/OData/MCP
+    type: MCPServer
 integrations:
   - name: OData
 maintainers:
