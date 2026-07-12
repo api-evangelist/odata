@@ -35,6 +35,8 @@ apis:
       - type: GettingStarted
         url: https://www.odata.org/getting-started/
 common:
+  - type: DomainSecurity
+    url: security/odata-domain-security.yml
   - type: Website
     url: https://www.odata.org/
   - type: Documentation
@@ -48,6 +50,8 @@ common:
   - name: MCP Server
     url: https://github.com/OData/MCP
     type: MCPServer
+  - url: https://www.odata.org/blog/feed.xml
+    type: Blog
 integrations:
   - name: OData
 maintainers:
