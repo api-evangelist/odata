@@ -1,0 +1,115 @@
+openapi: 3.0.3
+info:
+  title: OData Service $Metadata API
+  description: OpenAPI specification for the OData (Open Data Protocol) standard service endpoints. OData is an OASIS standard that defines best practices for building and consuming RESTful APIs. It enables the creation of query-based data services over HTTP using standard conventions for resource identification, URL construction, and payload formats.
+  version: '4.01'
+  contact:
+    name: OASIS OData Technical Committee
+    url: https://www.odata.org/
+  license:
+    name: OASIS Open
+    url: https://www.oasis-open.org/policies-guidelines/ipr/
+servers:
+- url: https://services.odata.org/V4/TripPinService
+  description: OData TripPin Reference Service
+- url: '{serviceRoot}'
+  description: Custom OData Service Root
+  variables:
+    serviceRoot:
+      default: https://localhost/odata
+      description: The root URL of the OData service
+tags:
+- name: $Metadata
+paths:
+  /$metadata:
+    get:
+      operationId: getMetadataDocument
+      summary: OData Get Metadata Document
+      description: Returns the OData metadata document (CSDL) describing the entity data model exposed by the service, including entity types, complex types, enumerations, actions, and functions.
+      parameters:
+      - $ref: '#/components/parameters/ODataVersion'
+      - name: Accept
+        in: header
+        schema:
+          type: string
+          enum:
+          - application/xml
+          - application/json
+          default: application/xml
+      responses:
+        '200':
+          description: Metadata document returned successfully
+          content:
+            application/xml:
+              schema:
+                type: string
+                description: CSDL XML metadata document
+            application/json:
+              schema:
+                type: object
+                description: CSDL JSON metadata document
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - $Metadata
+components:
+  responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
+  parameters:
+    ODataVersion:
+      name: OData-Version
+      in: header
+      description: OData protocol version
+      schema:
+        type: string
+        enum:
+        - '4.0'
+        - '4.01'
+        default: '4.01'
+  schemas:
+    ODataError:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          required:
+          - code
+          - message
+          properties:
+            code:
+              type: string
+              description: Service-defined error code
+            message:
+              type: string
+              description: Human-readable error message
+            target:
+              type: string
+              description: Target of the error (e.g., property name)
+            details:
+              type: array
+              items:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  target:
+                    type: string
+            innererror:
+              type: object
+              description: Service-defined inner error details
+              additionalProperties: true
+externalDocs:
+  description: OData Version 4.01 Specification
+  url: https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html

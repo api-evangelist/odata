@@ -1,0 +1,182 @@
+openapi: 3.0.3
+info:
+  title: OData Service $Batch API
+  description: OpenAPI specification for the OData (Open Data Protocol) standard service endpoints. OData is an OASIS standard that defines best practices for building and consuming RESTful APIs. It enables the creation of query-based data services over HTTP using standard conventions for resource identification, URL construction, and payload formats.
+  version: '4.01'
+  contact:
+    name: OASIS OData Technical Committee
+    url: https://www.odata.org/
+  license:
+    name: OASIS Open
+    url: https://www.oasis-open.org/policies-guidelines/ipr/
+servers:
+- url: https://services.odata.org/V4/TripPinService
+  description: OData TripPin Reference Service
+- url: '{serviceRoot}'
+  description: Custom OData Service Root
+  variables:
+    serviceRoot:
+      default: https://localhost/odata
+      description: The root URL of the OData service
+tags:
+- name: $Batch
+paths:
+  /$batch:
+    post:
+      operationId: executeBatch
+      summary: OData Execute Batch Request
+      description: Executes a batch of OData requests in a single HTTP call. Supports both JSON batch format and multipart/mixed format.
+      parameters:
+      - $ref: '#/components/parameters/ODataVersion'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchRequest'
+          multipart/mixed:
+            schema:
+              type: string
+              description: Multipart MIME batch request
+      responses:
+        '200':
+          description: Batch response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      tags:
+      - $Batch
+components:
+  schemas:
+    ODataError:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          required:
+          - code
+          - message
+          properties:
+            code:
+              type: string
+              description: Service-defined error code
+            message:
+              type: string
+              description: Human-readable error message
+            target:
+              type: string
+              description: Target of the error (e.g., property name)
+            details:
+              type: array
+              items:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  target:
+                    type: string
+            innererror:
+              type: object
+              description: Service-defined inner error details
+              additionalProperties: true
+    BatchRequest:
+      type: object
+      required:
+      - requests
+      properties:
+        requests:
+          type: array
+          items:
+            type: object
+            required:
+            - id
+            - method
+            - url
+            properties:
+              id:
+                type: string
+              atomicityGroup:
+                type: string
+                description: Groups requests into atomic changesets
+              dependsOn:
+                type: array
+                items:
+                  type: string
+              method:
+                type: string
+                enum:
+                - GET
+                - POST
+                - PATCH
+                - PUT
+                - DELETE
+              url:
+                type: string
+              headers:
+                type: object
+                additionalProperties:
+                  type: string
+              body:
+                type: object
+    BatchResponse:
+      type: object
+      required:
+      - responses
+      properties:
+        responses:
+          type: array
+          items:
+            type: object
+            required:
+            - id
+            - status
+            properties:
+              id:
+                type: string
+              status:
+                type: integer
+              headers:
+                type: object
+                additionalProperties:
+                  type: string
+              body:
+                type: object
+  responses:
+    BadRequest:
+      description: Bad request - invalid query or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
+  parameters:
+    ODataVersion:
+      name: OData-Version
+      in: header
+      description: OData protocol version
+      schema:
+        type: string
+        enum:
+        - '4.0'
+        - '4.01'
+        default: '4.01'
+externalDocs:
+  description: OData Version 4.01 Specification
+  url: https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html
