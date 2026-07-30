@@ -6,7 +6,19 @@ description: >-
   query-based data services over HTTP, providing a uniform way to describe
   data and data models, query and edit data, and perform batch operations.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/odata.png
 tags:
   - OASIS Standard
   - OData
@@ -18,22 +30,48 @@ created: '2025-01-01'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: odata:odata-service
-    name: OData Service API
-    description: >-
-      Standard OData service endpoints including service document, metadata
-      document, entity set CRUD operations, and batch processing as defined
-      by the OData v4.01 specification.
-    humanURL: https://www.odata.org/documentation/
-    tags:
-      - Metadata
-      - OData
-      - Service Document
-    properties:
-      - type: Documentation
-        url: https://www.odata.org/documentation/
-      - type: GettingStarted
-        url: https://www.odata.org/getting-started/
+- aid: odata:odata-service
+  name: OData Service API
+  description: >-
+    Standard OData service endpoints including service document, metadata document, entity set CRUD operations,
+    and batch processing as defined by the OData v4.01 specification.
+  humanURL: https://www.odata.org/documentation/
+  tags:
+  - Metadata
+  - OData
+  - Service Document
+  properties:
+  - type: Documentation
+    url: https://www.odata.org/documentation/
+  - type: GettingStarted
+    url: https://www.odata.org/getting-started/
+- aid: odata:odata-batch-api
+  name: OData $Batch API
+  description: The $Batch API from OData — 1 operation(s) for $batch.
+  humanURL: https://www.odata.org/documentation/
+  tags:
+  - $Batch
+  properties:
+  - type: OpenAPI
+    url: openapi/odata-batch-api-openapi.yml
+- aid: odata:odata-metadata-api
+  name: OData $Metadata API
+  description: The $Metadata API from OData — 1 operation(s) for $metadata.
+  humanURL: https://www.odata.org/documentation/
+  tags:
+  - $Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/odata-metadata-api-openapi.yml
+- aid: odata:odata-odata-service-api-api
+  name: OData OData Service API API
+  description: The OData Service API API from OData — 3 operation(s) for odata service api.
+  humanURL: https://www.odata.org/documentation/
+  tags:
+  - OData Service API
+  properties:
+  - type: OpenAPI
+    url: openapi/odata-odata-service-api-api-openapi.yml
 common:
   - type: DomainSecurity
     url: security/odata-domain-security.yml
