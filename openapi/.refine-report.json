@@ -1,0 +1,27 @@
+{
+  "provider": "odata",
+  "sources": [
+    "openapi.yml"
+  ],
+  "outputs": [
+    "odata-batch-api-openapi.yml",
+    "odata-metadata-api-openapi.yml",
+    "odata-odata-service-api-api-openapi.yml"
+  ],
+  "archived": [
+    "archived openapi.yml"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "discovered stray spec: openapi.yml",
+    "openapi.yml: tagged GET / -> OData Service API",
+    "openapi.yml: tagged GET /{entitySet} -> OData Service API",
+    "openapi.yml: tagged POST /{entitySet} -> OData Service API",
+    "openapi.yml: tagged GET /{entitySet}({key}) -> OData Service API",
+    "openapi.yml: tagged PATCH /{entitySet}({key}) -> OData Service API",
+    "openapi.yml: tagged DELETE /{entitySet}({key}) -> OData Service API",
+    "openapi.yml: declared missing tag: OData Service API"
+  ],
+  "skipped": []
+}
