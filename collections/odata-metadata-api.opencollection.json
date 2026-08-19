@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OData Service $Metadata API",
+    "version": "4.01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "$Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "OData Get Metadata Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services.odata.org/V4/TripPinService/$metadata",
+            "headers": [
+              {
+                "name": "OData-Version",
+                "value": ""
+              },
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Returns the OData metadata document (CSDL) describing the entity data model exposed by the service, including entity types, complex types, enumerations, actions, and functions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

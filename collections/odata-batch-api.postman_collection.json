@@ -1,0 +1,233 @@
+{
+  "item": [
+    {
+      "id": "de233570-f1ee-407a-b410-28d2e7a810a0",
+      "name": "$Batch",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a837d857-18b3-4a37-a6d7-44dcaeae4023",
+          "name": "OData Execute Batch Request",
+          "request": {
+            "name": "OData Execute Batch Request",
+            "description": {
+              "content": "Executes a batch of OData requests in a single HTTP call. Supports both JSON batch format and multipart/mixed format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "$batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "OData protocol version",
+                "key": "OData-Version",
+                "value": "4.01"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requests\": [\n    {\n      \"id\": \"<string>\",\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"atomicityGroup\": \"<string>\",\n      \"dependsOn\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"headers\": {\n        \"key_0\": \"<string>\"\n      },\n      \"body\": \"<object>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"atomicityGroup\": \"<string>\",\n      \"dependsOn\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"headers\": {\n        \"key_0\": \"<string>\"\n      },\n      \"body\": \"<object>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "81c5d5fe-e53b-4d50-913d-4dec9db6f532",
+              "name": "Batch response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "$batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "OData protocol version",
+                    "key": "OData-Version",
+                    "value": "4.01"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requests\": [\n    {\n      \"id\": \"<string>\",\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"atomicityGroup\": \"<string>\",\n      \"dependsOn\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"body\": \"<object>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"atomicityGroup\": \"<string>\",\n      \"dependsOn\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"headers\": {\n        \"key_0\": \"<string>\"\n      },\n      \"body\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responses\": [\n    {\n      \"id\": \"string\",\n      \"status\": 2126,\n      \"headers\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"body\": {}\n    },\n    {\n      \"id\": \"string\",\n      \"status\": 1231,\n      \"headers\": {\n        \"key_0\": \"string\"\n      },\n      \"body\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22b41412-1ea2-4dcc-9d60-105c0f6a625b",
+              "name": "Bad request - invalid query or request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "$batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "OData protocol version",
+                    "key": "OData-Version",
+                    "value": "4.01"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requests\": [\n    {\n      \"id\": \"<string>\",\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"atomicityGroup\": \"<string>\",\n      \"dependsOn\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"body\": \"<object>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"atomicityGroup\": \"<string>\",\n      \"dependsOn\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"headers\": {\n        \"key_0\": \"<string>\"\n      },\n      \"body\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": {\n      \"key_0\": true,\n      \"key_1\": 5819.697725055224\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5681d530-ded1-45a3-a490-e79f10a51611",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "$batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "OData protocol version",
+                    "key": "OData-Version",
+                    "value": "4.01"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requests\": [\n    {\n      \"id\": \"<string>\",\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"atomicityGroup\": \"<string>\",\n      \"dependsOn\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"headers\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"body\": \"<object>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"atomicityGroup\": \"<string>\",\n      \"dependsOn\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"headers\": {\n        \"key_0\": \"<string>\"\n      },\n      \"body\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\",\n    \"details\": [\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      },\n      {\n        \"code\": \"string\",\n        \"message\": \"string\",\n        \"target\": \"string\"\n      }\n    ],\n    \"innererror\": {\n      \"key_0\": 7010.432475111983,\n      \"key_1\": 191.7838098917779,\n      \"key_2\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://services.odata.org/V4/TripPinService",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5fcb4760-584b-4f7a-a00b-dd2d074c1bc3",
+    "name": "OData Service $Batch API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI specification for the OData (Open Data Protocol) standard service endpoints. OData is an OASIS standard that defines best practices for building and consuming RESTful APIs. It enables the creation of query-based data services over HTTP using standard conventions for resource identification, URL construction, and payload formats.\n\nContact Support:\n Name: OASIS OData Technical Committee",
+      "type": "text/plain"
+    }
+  }
+}

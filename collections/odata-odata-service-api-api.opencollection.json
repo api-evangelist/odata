@@ -1,0 +1,267 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OData Service OData Service API API",
+    "version": "4.01"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OData Service API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "OData Get Service Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services.odata.org/V4/TripPinService/",
+            "headers": [
+              {
+                "name": "OData-Version",
+                "value": ""
+              },
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Returns the OData service document, which lists all available entity sets, singletons, and function imports exposed by the service."
+        },
+        {
+          "info": {
+            "name": "OData Query Entity Collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services.odata.org/V4/TripPinService/:entitySet",
+            "headers": [
+              {
+                "name": "OData-Version",
+                "value": ""
+              },
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "entitySet",
+                "value": "",
+                "type": "path",
+                "description": "Name of the entity set to query"
+              },
+              {
+                "name": "$filter",
+                "value": "Name eq 'Smith'",
+                "type": "query",
+                "description": "OData filter expression to restrict returned entities"
+              },
+              {
+                "name": "$select",
+                "value": "Name,Age",
+                "type": "query",
+                "description": "Comma-separated list of properties to include"
+              },
+              {
+                "name": "$expand",
+                "value": "Orders",
+                "type": "query",
+                "description": "Related entities to include inline"
+              },
+              {
+                "name": "$orderby",
+                "value": "Name asc",
+                "type": "query",
+                "description": "Property and direction for sorting"
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of entities to return"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of entities to skip"
+              },
+              {
+                "name": "$count",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include a count of matching entities"
+              },
+              {
+                "name": "$search",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search expression"
+              },
+              {
+                "name": "$format",
+                "value": "",
+                "type": "query",
+                "description": "Response format override"
+              }
+            ]
+          },
+          "docs": "Retrieves a collection of entities from the specified entity set. Supports OData system query options for filtering, sorting, pagination, and projection."
+        },
+        {
+          "info": {
+            "name": "OData Create Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://services.odata.org/V4/TripPinService/:entitySet",
+            "headers": [
+              {
+                "name": "OData-Version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "entitySet",
+                "value": "",
+                "type": "path",
+                "description": "Name of the entity set"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new entity in the specified entity set."
+        },
+        {
+          "info": {
+            "name": "OData Get Entity by Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://services.odata.org/V4/TripPinService/:entitySet(:key)",
+            "headers": [
+              {
+                "name": "OData-Version",
+                "value": ""
+              },
+              {
+                "name": "Accept",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "entitySet",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The key value identifying the entity"
+              },
+              {
+                "name": "$select",
+                "value": "Name,Age",
+                "type": "query",
+                "description": "Comma-separated list of properties to include"
+              },
+              {
+                "name": "$expand",
+                "value": "Orders",
+                "type": "query",
+                "description": "Related entities to include inline"
+              }
+            ]
+          },
+          "docs": "Retrieves a single entity by its key value."
+        },
+        {
+          "info": {
+            "name": "OData Update Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://services.odata.org/V4/TripPinService/:entitySet(:key)",
+            "headers": [
+              {
+                "name": "OData-Version",
+                "value": ""
+              },
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "entitySet",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing entity using PATCH (merge semantics)."
+        },
+        {
+          "info": {
+            "name": "OData Delete Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://services.odata.org/V4/TripPinService/:entitySet(:key)",
+            "headers": [
+              {
+                "name": "OData-Version",
+                "value": ""
+              },
+              {
+                "name": "If-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "entitySet",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes an entity from the specified entity set."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
