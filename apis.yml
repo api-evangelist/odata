@@ -61,7 +61,7 @@ apis:
   description: The $Batch API from OData — 1 operation(s) for $batch.
   humanURL: https://www.odata.org/documentation/
   tags:
-  - Batch
+  - $Batch
   tags_raw:
   - $Batch
   properties:
@@ -72,7 +72,7 @@ apis:
   description: The $Metadata API from OData — 1 operation(s) for $metadata.
   humanURL: https://www.odata.org/documentation/
   tags:
-  - Metadata
+  - $Metadata
   tags_raw:
   - $Metadata
   properties:
