@@ -1,5 +1,6 @@
 aid: odata
 name: OData
+x-parent: microsoft
 description: >-
   OData (Open Data Protocol) is an OASIS standard that defines best practices
   for building and consuming RESTful APIs. It enables the creation of
