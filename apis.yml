@@ -1,11 +1,9 @@
 aid: odata
 name: OData
 x-parent: microsoft
-description: >-
-  OData (Open Data Protocol) is an OASIS standard that defines best practices
-  for building and consuming RESTful APIs. It enables the creation of
-  query-based data services over HTTP, providing a uniform way to describe
-  data and data models, query and edit data, and perform batch operations.
+description: OData (Open Data Protocol) is an OASIS standard that defines best practices for building
+  and consuming RESTful APIs. It enables the creation of query-based data services over HTTP, providing
+  a uniform way to describe data and data models, query and edit data, and perform batch operations.
 type: Index
 deliveryModel:
   model: unknown
@@ -32,21 +30,20 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/odata.png
 tags:
-  - OASIS Standard
-  - OData
-  - Open Data Protocol
-  - Query Language
-  - RESTful APIs
+- OASIS Standard
+- OData
+- Open Data Protocol
+- Query Language
+- RESTful APIs
 url: https://raw.githubusercontent.com/api-evangelist/odata/refs/heads/main/apis.yml
 created: '2025-01-01'
-modified: '2026-05-19'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 apis:
 - aid: odata:odata-service
   name: OData Service API
-  description: >-
-    Standard OData service endpoints including service document, metadata document, entity set CRUD operations,
-    and batch processing as defined by the OData v4.01 specification.
+  description: Standard OData service endpoints including service document, metadata document, entity
+    set CRUD operations, and batch processing as defined by the OData v4.01 specification.
   humanURL: https://www.odata.org/documentation/
   tags:
   - Metadata
@@ -80,7 +77,7 @@ apis:
   - type: OpenAPI
     url: openapi/odata-metadata-api-openapi.yml
 - aid: odata:odata-odata-service-api-api
-  name: OData OData Service API API
+  name: OData Service API
   description: The OData Service API API from OData — 3 operation(s) for odata service api.
   humanURL: https://www.odata.org/documentation/
   tags:
@@ -89,25 +86,25 @@ apis:
   - type: OpenAPI
     url: openapi/odata-odata-service-api-api-openapi.yml
 common:
-  - type: DomainSecurity
-    url: security/odata-domain-security.yml
-  - type: Website
-    url: https://www.odata.org/
-  - type: Documentation
-    url: https://www.odata.org/documentation/
-  - type: GitHubOrganization
-    url: https://github.com/OData
-  - type: Reference
-    url: https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html
-  - type: Integrations
-    url: https://www.odata.org/ecosystem/
-  - name: MCP Server
-    url: https://github.com/OData/MCP
-    type: MCPServer
-  - url: https://www.odata.org/blog/feed.xml
-    type: Blog
+- type: DomainSecurity
+  url: security/odata-domain-security.yml
+- type: Website
+  url: https://www.odata.org/
+- type: Documentation
+  url: https://www.odata.org/documentation/
+- type: GitHubOrganization
+  url: https://github.com/OData
+- type: Reference
+  url: https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html
+- type: Integrations
+  url: https://www.odata.org/ecosystem/
+- name: MCP Server
+  url: https://github.com/OData/MCP
+  type: MCPServer
+- url: https://www.odata.org/blog/feed.xml
+  type: Blog
 integrations:
-  - name: OData
+- name: OData
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
