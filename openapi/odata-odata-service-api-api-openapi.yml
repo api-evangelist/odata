@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: OData Service OData Service API API
+  title: OData Service API
   description: OpenAPI specification for the OData (Open Data Protocol) standard service endpoints. OData is an OASIS standard that defines best practices for building and consuming RESTful APIs. It enables the creation of query-based data services over HTTP using standard conventions for resource identification, URL construction, and payload formats.
   version: '4.01'
   contact:
@@ -245,7 +245,67 @@ paths:
       tags:
       - OData Service API
 components:
+  responses:
+    BadRequest:
+      description: Bad request - invalid query or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
   parameters:
+    Format:
+      name: $format
+      in: query
+      description: Response format override
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+    Search:
+      name: $search
+      in: query
+      description: Free-text search expression
+      schema:
+        type: string
+    OrderBy:
+      name: $orderby
+      in: query
+      description: Property and direction for sorting
+      schema:
+        type: string
+      example: Name asc
+    Count:
+      name: $count
+      in: query
+      description: Whether to include a count of matching entities
+      schema:
+        type: boolean
+    Filter:
+      name: $filter
+      in: query
+      description: OData filter expression to restrict returned entities
+      schema:
+        type: string
+      example: Name eq 'Smith'
     Select:
       name: $select
       in: query
@@ -253,6 +313,12 @@ components:
       schema:
         type: string
       example: Name,Age
+    Accept:
+      name: Accept
+      in: header
+      schema:
+        type: string
+        default: application/json
     Expand:
       name: $expand
       in: query
@@ -260,12 +326,6 @@ components:
       schema:
         type: string
       example: Orders
-    Search:
-      name: $search
-      in: query
-      description: Free-text search expression
-      schema:
-        type: string
     ODataVersion:
       name: OData-Version
       in: header
@@ -276,15 +336,6 @@ components:
         - '4.0'
         - '4.01'
         default: '4.01'
-    Format:
-      name: $format
-      in: query
-      description: Response format override
-      schema:
-        type: string
-        enum:
-        - json
-        - xml
     Top:
       name: $top
       in: query
@@ -292,25 +343,6 @@ components:
       schema:
         type: integer
         minimum: 0
-    Accept:
-      name: Accept
-      in: header
-      schema:
-        type: string
-        default: application/json
-    Count:
-      name: $count
-      in: query
-      description: Whether to include a count of matching entities
-      schema:
-        type: boolean
-    OrderBy:
-      name: $orderby
-      in: query
-      description: Property and direction for sorting
-      schema:
-        type: string
-      example: Name asc
     Skip:
       name: $skip
       in: query
@@ -318,32 +350,21 @@ components:
       schema:
         type: integer
         minimum: 0
-    Filter:
-      name: $filter
-      in: query
-      description: OData filter expression to restrict returned entities
-      schema:
-        type: string
-      example: Name eq 'Smith'
   schemas:
-    Entity:
+    ServiceDocument:
       type: object
+      required:
+      - '@odata.context'
+      - value
       properties:
         '@odata.context':
           type: string
-        '@odata.etag':
-          type: string
-          description: ETag for concurrency control
-        '@odata.id':
-          type: string
-          description: Entity ID URL
-        '@odata.editLink':
-          type: string
-          description: URL for editing the entity
-        '@odata.type':
-          type: string
-          description: Fully qualified entity type name
-      additionalProperties: true
+          description: Context URL pointing to the metadata document
+          example: https://services.odata.org/V4/TripPinService/$metadata
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceDocumentItem'
     ServiceDocumentItem:
       type: object
       required:
@@ -364,6 +385,24 @@ components:
         url:
           type: string
           description: URL relative to the service root
+    Entity:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        '@odata.etag':
+          type: string
+          description: ETag for concurrency control
+        '@odata.id':
+          type: string
+          description: Entity ID URL
+        '@odata.editLink':
+          type: string
+          description: URL for editing the entity
+        '@odata.type':
+          type: string
+          description: Fully qualified entity type name
+      additionalProperties: true
     EntityCollection:
       type: object
       required:
@@ -425,45 +464,6 @@ components:
               type: object
               description: Service-defined inner error details
               additionalProperties: true
-    ServiceDocument:
-      type: object
-      required:
-      - '@odata.context'
-      - value
-      properties:
-        '@odata.context':
-          type: string
-          description: Context URL pointing to the metadata document
-          example: https://services.odata.org/V4/TripPinService/$metadata
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServiceDocumentItem'
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ODataError'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ODataError'
-    BadRequest:
-      description: Bad request - invalid query or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ODataError'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ODataError'
 externalDocs:
   description: OData Version 4.01 Specification
   url: https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html

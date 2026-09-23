@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: OData Service $Metadata API
   description: OpenAPI specification for the OData (Open Data Protocol) standard service endpoints. OData is an OASIS standard that defines best practices for building and consuming RESTful APIs. It enables the creation of query-based data services over HTTP using standard conventions for resource identification, URL construction, and payload formats.
@@ -19,7 +19,7 @@ servers:
       default: https://localhost/odata
       description: The root URL of the OData service
 tags:
-- name: $Metadata
+- name: Metadata
 paths:
   /$metadata:
     get:
@@ -51,7 +51,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
       tags:
-      - $Metadata
+      - Metadata
 components:
   responses:
     InternalServerError:
