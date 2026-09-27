@@ -53,13 +53,6 @@ paths:
       tags:
       - Metadata
 components:
-  responses:
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ODataError'
   parameters:
     ODataVersion:
       name: OData-Version
@@ -110,6 +103,13 @@ components:
               type: object
               description: Service-defined inner error details
               additionalProperties: true
+  responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
 externalDocs:
   description: OData Version 4.01 Specification
   url: https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html
