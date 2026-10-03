@@ -53,17 +53,13 @@ paths:
       tags:
       - Metadata
 components:
-  parameters:
-    ODataVersion:
-      name: OData-Version
-      in: header
-      description: OData protocol version
-      schema:
-        type: string
-        enum:
-        - '4.0'
-        - '4.01'
-        default: '4.01'
+  responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
   schemas:
     ODataError:
       type: object
@@ -103,13 +99,17 @@ components:
               type: object
               description: Service-defined inner error details
               additionalProperties: true
-  responses:
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ODataError'
+  parameters:
+    ODataVersion:
+      name: OData-Version
+      in: header
+      description: OData protocol version
+      schema:
+        type: string
+        enum:
+        - '4.0'
+        - '4.01'
+        default: '4.01'
 externalDocs:
   description: OData Version 4.01 Specification
   url: https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html
