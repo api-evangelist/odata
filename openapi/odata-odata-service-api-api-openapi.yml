@@ -246,58 +246,19 @@ paths:
       - OData Service API
 components:
   parameters:
-    Select:
-      name: $select
+    Expand:
+      name: $expand
       in: query
-      description: Comma-separated list of properties to include
+      description: Related entities to include inline
       schema:
         type: string
-      example: Name,Age
-    ODataVersion:
-      name: OData-Version
-      in: header
-      description: OData protocol version
-      schema:
-        type: string
-        enum:
-        - '4.0'
-        - '4.01'
-        default: '4.01'
-    OrderBy:
-      name: $orderby
-      in: query
-      description: Property and direction for sorting
-      schema:
-        type: string
-      example: Name asc
-    Format:
-      name: $format
-      in: query
-      description: Response format override
-      schema:
-        type: string
-        enum:
-        - json
-        - xml
+      example: Orders
     Count:
       name: $count
       in: query
       description: Whether to include a count of matching entities
       schema:
         type: boolean
-    Filter:
-      name: $filter
-      in: query
-      description: OData filter expression to restrict returned entities
-      schema:
-        type: string
-      example: Name eq 'Smith'
-    Accept:
-      name: Accept
-      in: header
-      schema:
-        type: string
-        default: application/json
     Top:
       name: $top
       in: query
@@ -305,6 +266,20 @@ components:
       schema:
         type: integer
         minimum: 0
+    Select:
+      name: $select
+      in: query
+      description: Comma-separated list of properties to include
+      schema:
+        type: string
+      example: Name,Age
+    Filter:
+      name: $filter
+      in: query
+      description: OData filter expression to restrict returned entities
+      schema:
+        type: string
+      example: Name eq 'Smith'
     Skip:
       name: $skip
       in: query
@@ -318,14 +293,62 @@ components:
       description: Free-text search expression
       schema:
         type: string
-    Expand:
-      name: $expand
-      in: query
-      description: Related entities to include inline
+    Accept:
+      name: Accept
+      in: header
       schema:
         type: string
-      example: Orders
+        default: application/json
+    OrderBy:
+      name: $orderby
+      in: query
+      description: Property and direction for sorting
+      schema:
+        type: string
+      example: Name asc
+    ODataVersion:
+      name: OData-Version
+      in: header
+      description: OData protocol version
+      schema:
+        type: string
+        enum:
+        - '4.0'
+        - '4.01'
+        default: '4.01'
+    Format:
+      name: $format
+      in: query
+      description: Response format override
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
   schemas:
+    EntityCollection:
+      type: object
+      required:
+      - value
+      properties:
+        '@odata.context':
+          type: string
+          description: Context URL describing the entity type
+        '@odata.count':
+          type: integer
+          description: Total count of matching entities (if requested)
+        '@odata.nextLink':
+          type: string
+          format: uri
+          description: URL to the next page of results
+        '@odata.deltaLink':
+          type: string
+          format: uri
+          description: URL to track changes from this point
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entity'
     ODataError:
       type: object
       required:
@@ -364,43 +387,6 @@ components:
               type: object
               description: Service-defined inner error details
               additionalProperties: true
-    ServiceDocument:
-      type: object
-      required:
-      - '@odata.context'
-      - value
-      properties:
-        '@odata.context':
-          type: string
-          description: Context URL pointing to the metadata document
-          example: https://services.odata.org/V4/TripPinService/$metadata
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/ServiceDocumentItem'
-    EntityCollection:
-      type: object
-      required:
-      - value
-      properties:
-        '@odata.context':
-          type: string
-          description: Context URL describing the entity type
-        '@odata.count':
-          type: integer
-          description: Total count of matching entities (if requested)
-        '@odata.nextLink':
-          type: string
-          format: uri
-          description: URL to the next page of results
-        '@odata.deltaLink':
-          type: string
-          format: uri
-          description: URL to track changes from this point
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/Entity'
     Entity:
       type: object
       properties:
@@ -419,6 +405,20 @@ components:
           type: string
           description: Fully qualified entity type name
       additionalProperties: true
+    ServiceDocument:
+      type: object
+      required:
+      - '@odata.context'
+      - value
+      properties:
+        '@odata.context':
+          type: string
+          description: Context URL pointing to the metadata document
+          example: https://services.odata.org/V4/TripPinService/$metadata
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceDocumentItem'
     ServiceDocumentItem:
       type: object
       required:
@@ -446,14 +446,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ODataError'
-    BadRequest:
-      description: Bad request - invalid query or request body
+    Unauthorized:
+      description: Authentication required
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ODataError'
-    Unauthorized:
-      description: Authentication required
+    BadRequest:
+      description: Bad request - invalid query or request body
       content:
         application/json:
           schema:
