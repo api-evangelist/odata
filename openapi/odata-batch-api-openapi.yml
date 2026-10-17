@@ -53,6 +53,44 @@ paths:
       - Batch
 components:
   schemas:
+    ODataError:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          type: object
+          required:
+          - code
+          - message
+          properties:
+            code:
+              type: string
+              description: Service-defined error code
+            message:
+              type: string
+              description: Human-readable error message
+            target:
+              type: string
+              description: Target of the error (e.g., property name)
+            details:
+              type: array
+              items:
+                type: object
+                required:
+                - code
+                - message
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  target:
+                    type: string
+            innererror:
+              type: object
+              description: Service-defined inner error details
+              additionalProperties: true
     BatchResponse:
       type: object
       required:
@@ -115,44 +153,19 @@ components:
                   type: string
               body:
                 type: object
-    ODataError:
-      type: object
-      required:
-      - error
-      properties:
-        error:
-          type: object
-          required:
-          - code
-          - message
-          properties:
-            code:
-              type: string
-              description: Service-defined error code
-            message:
-              type: string
-              description: Human-readable error message
-            target:
-              type: string
-              description: Target of the error (e.g., property name)
-            details:
-              type: array
-              items:
-                type: object
-                required:
-                - code
-                - message
-                properties:
-                  code:
-                    type: string
-                  message:
-                    type: string
-                  target:
-                    type: string
-            innererror:
-              type: object
-              description: Service-defined inner error details
-              additionalProperties: true
+  responses:
+    BadRequest:
+      description: Bad request - invalid query or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
   parameters:
     ODataVersion:
       name: OData-Version
@@ -164,19 +177,6 @@ components:
         - '4.0'
         - '4.01'
         default: '4.01'
-  responses:
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ODataError'
-    BadRequest:
-      description: Bad request - invalid query or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ODataError'
 externalDocs:
   description: OData Version 4.01 Specification
   url: https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html
