@@ -1,4 +1,4 @@
-# OData (odata)
+# OData
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,49 +66,119 @@
 
 OData (Open Data Protocol) is an OASIS standard that defines best practices for building and consuming RESTful APIs. It enables the creation of query-based data services over HTTP, providing a uniform way to describe data and data models, query and edit data, and perform batch operations.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/odata/refs/heads/main/apis.yml)
+**Areas:** OASIS Standard · OData · Open Data Protocol · Query Language · RESTful APIs
 
-## Scope
+## OData on APIs.io
 
-- **Type:** Index 
-- **Position:** Consuming 
-- **Access:** 3rd-Party 
+Everything profiled for OData is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/odata/](https://apis.io/providers/odata/)** — or go straight to one of the APIs or properties below.
 
-## Tags:
+### APIs (4)
 
- - OData, Open Data Protocol, RESTful APIs, Query Language, OASIS Standard
+- [OData Service API](https://apis.io/apis/odata/odata-service/) — Standard OData service endpoints including service document, metadata document, entity set CRUD operations, and batch processing as defined by the OData…
+- [OData $Batch API](https://apis.io/apis/odata/odata-batch-api/) — The $Batch API from OData — 1 operation(s) for $batch.
+- [OData $Metadata API](https://apis.io/apis/odata/odata-metadata-api/) — The $Metadata API from OData — 1 operation(s) for $metadata.
+- [OData Service API](https://apis.io/apis/odata/odata-odata-service-api-api/) — The OData Service API API from OData — 3 operation(s) for odata service api.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-01-01 
-- **Modified:** 2026-04-28 
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### MCP servers (1)
 
-### OData Service API
-Standard OData service endpoints including service document, metadata document, entity set CRUD operations, and batch processing as defined by the OData v4.01 specification.
+Model Context Protocol servers that expose the API to agents.
 
-**Human URL:** [https://www.odata.org/documentation/](https://www.odata.org/documentation/)
+- [MCP Server](https://apis.io/servers/odata/mcp-server/)
 
+#### Collections (3)
 
-#### Tags:
+Postman and Open Collection request collections.
 
- - OData, Service Document, Metadata
+- [OData Service $Batch API](https://apis.io/collections/odata/open-odata-batch-api/)
+- [OData Service $Metadata API](https://apis.io/collections/odata/open-odata-metadata-api/)
+- [OData Service OData Service API API](https://apis.io/collections/odata/open-odata-odata-service-api-api/)
 
-#### Properties
+#### Security (1)
 
-- [Documentation](https://www.odata.org/documentation/)
-- [Getting Started](https://www.odata.org/getting-started/)
+Authentication, trust centre, and vulnerability disclosure.
 
-## Common Properties
+- [Odata Domain Security](https://apis.io/security/odata/odata-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Odata Plans Pricing](https://apis.io/plans/odata/odata-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Odata Rate Limits](https://apis.io/rate-limits/odata/odata-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Odata Finops](https://apis.io/finops/odata/odata-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.odata.org/)
 - [Documentation](https://www.odata.org/documentation/)
-- [GitHub Organization](https://github.com/OData)
-- [Reference](https://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html)
+- [Blog](https://www.odata.org/blog/feed.xml)
+- [GitHub](https://github.com/OData)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
+**Kin Score 24.8** — emerging · rubric 0.24.0 · scored 2026-10-17
 
-**Email:** kin@apievangelist.com
+| Facet | Score |
+|---|---|
+| Discoverability | 56.7 |
+| Contract quality | 48.4 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 31.0 |
+| Access clarity | 7.9 |
+
+**Agent readiness 22.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 5.9** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/odata/](https://apis.io/providers/odata/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for OData: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/odata/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
